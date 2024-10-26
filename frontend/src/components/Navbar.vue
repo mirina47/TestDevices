@@ -3,7 +3,7 @@
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #7AB2FF;">
         <div class="container-fluid p-2">
           <ul class="navbar-nav me-auto mb-8 mb-lg-0 h5 nav-centered">
-            <li class="nav-item"><router-link class="nav-link text" to="/listDevices">Устройства</router-link></li> 
+            <li class="nav-item"><router-link class="nav-link text" to="/">Устройства</router-link></li> 
           </ul>
         </div>
       </nav>
