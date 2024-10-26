@@ -27,6 +27,10 @@
                                             <span class="me-3">{{ node.name }}</span>
                                             <button class="btn btn-outline-warning me-3" @click="editNode(deviceIndex, nodeIndex)">Редактировать</button>
                                             <button class="btn btn-outline-danger me-3" @click="deleteNode(deviceIndex, nodeIndex)">Удалить</button>
+                                            <div class="ms-auto d-flex align-items-center">
+                                                <button class="btn btn-outline-secondary me-2" @click="moveNodeUp(deviceIndex, nodeIndex)" :disabled="nodeIndex === 0">Вверх</button>
+                                                <button class="btn btn-outline-secondary" @click="moveNodeDown(deviceIndex, nodeIndex)" :disabled="nodeIndex === device.nodes.length - 1">Вниз</button>
+                                            </div>
                                         </div>
                                         <div v-else class="col-6 d-flex align-items-center">
                                             <input type="text" v-model="node.name" class="form-control me-3">
@@ -56,8 +60,8 @@
         data() {
             return {
                 devices: [
-                    { name: 'Пример устройства 1', nodes: [{ name: 'Пример узла 1' }, { name: 'Пример узла 2' }] },
-                    { name: 'Пример устройства 2', nodes: [{ name: 'Пример узла 3' }] },
+                    { name: 'Пример устройства 1', nodes: [{ name: 'Пример узла 1' }, { name: 'Пример узла 2' }, { name: 'Пример узла 3' }] },
+                    { name: 'Пример устройства 2', nodes: [{ name: 'Пример узла 4' }] },
                     { name: 'Пример устройства 3', nodes: [] }
                 ],
                 newDevice: {
@@ -129,6 +133,22 @@
 
             deleteNode(deviceIndex, nodeIndex) {
                 this.devices[deviceIndex].nodes.splice(nodeIndex, 1);
+            },
+
+            moveNodeUp(deviceIndex, nodeIndex) {
+                if (nodeIndex > 0) {
+                    const temp = this.devices[deviceIndex].nodes[nodeIndex];
+                    this.devices[deviceIndex].nodes[nodeIndex] = this.devices[deviceIndex].nodes[nodeIndex - 1];
+                    this.devices[deviceIndex].nodes[nodeIndex - 1] = temp;
+                }
+            },
+
+            moveNodeDown(deviceIndex, nodeIndex) {
+                if (nodeIndex < this.devices[deviceIndex].nodes.length - 1) {
+                    const temp = this.devices[deviceIndex].nodes[nodeIndex];
+                    this.devices[deviceIndex].nodes[nodeIndex] = this.devices[deviceIndex].nodes[nodeIndex + 1];
+                    this.devices[deviceIndex].nodes[nodeIndex + 1] = temp;
+                }
             }
         }
     };
