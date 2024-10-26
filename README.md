@@ -6,7 +6,7 @@
 ```
 $ cd frontend
 $ npm install
-$ npm run dev
+$ npm run serve
 ```
 
 Тестовое задание: редактор списка устройств и их узлов учёта.
