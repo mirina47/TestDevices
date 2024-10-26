@@ -1,19 +1,17 @@
 <template>
   <div id="app">
     <navbar/>
-    <ListDevices/>
+    <router-view />
   </div>
 </template>
 
 <script>
     import Navbar from './components/Navbar';
-    import ListDevices from './components/ListDevices.vue';
 
     export default {
         name: 'App',
         components: {
-            Navbar: Navbar,
-            ListDevices: ListDevices
+            Navbar: Navbar
         }
     }
 </script>
